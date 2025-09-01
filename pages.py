@@ -1,6 +1,4 @@
 #import
-from html.parser import commentclose
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -33,7 +31,7 @@ class UrbanRoutesPage:
     code_card = (By.CSS_SELECTOR, 'input.card-input#code')
     add_finish_card = (By.XPATH, '//button[contains(text(),"Adicionar")]')
     close_button_card = (By.CSS_SELECTOR, '.payment-picker.open .close-button')
-    comfirm_card = (By.CSS_SELECTOR, '.pp-value-text')
+    confirm_card = (By.CSS_SELECTOR, '.pp-value-text')
 
     #Adicionar Comentário
     add_comment = (By.ID, 'comment')
@@ -100,16 +98,16 @@ class UrbanRoutesPage:
     def click_add_cartao(self,cartao,code):
         self.driver.find_element(*self.add_metodo_pagamento).click()
         self.driver.find_element(*self.add_card).click()
-        time.sleep(5)
+
         self.driver.find_element(*self.number_card).send_keys(cartao)
-        time.sleep(5)
+
         self.driver.find_element(*self.code_card).send_keys(code)
-        time.sleep(5)
+
         self.driver.find_element(*self.add_finish_card).click()
         self.driver.find_element(*self.close_button_card).click()
 
     def confirm_cartao(self):
-        return self.driver.find_element(*self.comfirm_card).text
+        return self.driver.find_element(*self.confirm_card).text
 
     def add_comentario(self, comentario):
         self.driver.find_element(*self.add_comment).send_keys(comentario)
